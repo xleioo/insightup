@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<!-- 引入现代中文字体：思源黑体和苹方 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>数据洞察 - AI驱动的电子表格分析平台</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #135bec;
+        --secondary-color: #6366f1;
+        --accent-color: #818cf8;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background: linear-gradient(170deg, #f0f3ff, #e6e9f5);
+      }
+
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      /* 中文字体优化 */
+      h1 {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        letter-spacing: -0.01em;
+        font-weight: 400;
+      }
+      
+      h2, h3 {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        letter-spacing: -0.005em;
+        font-weight: 400;
+      }
+      
+      .font-display {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+      }
+      
+      .font-text {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+      }
+      
+      /* 中文按钮字体 */
+      button {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        letter-spacing: 0.02em;
+        font-weight: 400;
+      }
+      
+      /* 中文正文字体 */
+      p {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        letter-spacing: 0.01em;
+      }
+    </style>
+</head>
+<body>
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap px-10 py-4 glassmorphism transition-all duration-300">
+<div class="flex items-center gap-4 text-slate-800">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<h2 class="text-slate-800 text-xl leading-tight tracking-tighter">数据洞察</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 text-sm font-medium leading-normal hover:text-[var(--primary-color)] transition-colors" href="#">产品</a>
+<a class="text-slate-600 text-sm font-medium leading-normal hover:text-[var(--primary-color)] transition-colors" href="#">解决方案</a>
+<a class="text-slate-600 text-sm font-medium leading-normal hover:text-[var(--primary-color)] transition-colors" href="#">定价</a>
+<a class="text-slate-600 text-sm font-medium leading-normal hover:text-[var(--primary-color)] transition-colors" href="#">关于</a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full h-10 px-6 border border-[var(--primary-color)] text-[var(--primary-color)] text-sm font-medium hover:bg-[var(--primary-color)] hover:text-white transition-colors">
+登录
+</button>
+<button class="flex items-center justify-center rounded-full h-10 px-6 bg-[var(--primary-color)] text-white text-sm font-medium shadow-md hover:shadow-lg transition-shadow">
+开始免费试用
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 flex-col pt-24">
+<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-5xl flex-1 gap-16">
+<div class="relative min-h-[580px] flex flex-col gap-8 items-center justify-center text-center rounded-3xl overflow-hidden p-8" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkhpBDYrU9dC6qfR_CsG-bNo26epY1OoafqSgtLAtnuRGLTc6o6GnxSKtmFRKcnbgkOG5lHNJmaegY65AsqKZcInYLcXQxtiGMohx9XHoF3VQvJiPnTdPhGnQp-pbDNboeultTDA2MOquivMQr8kYE5UadoLwjdTIMrvCozqTv2qFk8H8mJ9rn6gIm0mgs2Si-HH6Z0bj0FoI5tmVfualTP_MGBPcLmze0vNZSbIoSdkETo4U1DdtOcRV6lCDd1AkFxw5qQc9ugxU"); background-size: cover; background-position: center;'>
+<div class="absolute inset-0 bg-gradient-to-t from-[var(--primary-color)] to-transparent opacity-30"></div>
+<div class="relative z-10 flex flex-col gap-6 items-center">
+<div class="text-pink-500 text-sm font-medium tracking-wider">数据洞察</div>
+<h1 class="text-white text-5xl md:text-6xl leading-tight">AI驱动，从电子表格即时获得洞察</h1>
+<p class="text-white/80 text-lg font-normal leading-normal max-w-3xl mx-auto">将原始数据转化为可操作的洞察，使用我们的AI驱动平台。可视化趋势，识别机会，做出更明智的数据驱动决策。</p>
+<div class="hidden md:flex flex-col items-center gap-4 mt-4 p-6 rounded-2xl glassmorphism max-w-lg w-full">
+<p class="text-white font-semibold">上传您的Excel文件进行即时分析</p>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-white/10 hover:bg-white/20 border-gray-400 hover:border-gray-300 transition-colors" for="dropzone-file">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-white/80 text-4xl">cloud_upload</span>
+<p class="mb-2 text-sm text-white/80"><span class="font-semibold">点击上传</span> 或拖拽文件</p>
+<p class="text-xs text-white/60">支持 XLSX, XLS 格式</p>
+</div>
+<input class="hidden" id="dropzone-file" type="file"/>
+</label>
+</div>
+<button class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base shadow-lg hover:shadow-xl transition-shadow duration-300">
+<span class="truncate">立即分析</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-12">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col gap-4 max-w-2xl">
+<h2 class="text-slate-800 text-4xl md:text-5xl leading-tight">AI驱动的智能决策功能</h2>
+<p class="text-slate-600 text-lg font-normal leading-normal">我们的平台利用前沿AI技术，为您提供无与伦比的数据分析和决策能力。</p>
+</div>
+<button class="flex items-center gap-2 min-w-[84px] max-w-[480px] cursor-pointer justify-center overflow-hidden rounded-full h-12 px-6 bg-[var(--secondary-color)] text-white text-base leading-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+<span class="truncate">探索AI功能</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 rounded-2xl p-6 glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white">
+<span class="material-symbols-outlined text-2xl">auto_awesome</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">AI驱动洞察</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">让我们的AI自动分析您的数据，发现重要趋势、异常和您可能错过的机会。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-2xl p-6 glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white">
+<span class="material-symbols-outlined text-2xl">psychology</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">预测分析</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">利用机器学习模型预测未来结果，基于数据驱动的预测做出主动决策。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-2xl p-6 glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white">
+<span class="material-symbols-outlined text-2xl">rule</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">决策导向BI</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">超越简单的数据报告。我们的智能BI提供具体建议来指导您的战略选择。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<h2 class="text-slate-800 text-4xl md:text-5xl leading-tight text-center">应用场景</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8u2stWqsrnsuT2TC43A5pAk_mR-VoAHa9_yn9ycyocKkjuha9_0VmXOlkoTVaNcgX4gYFjXwx2TTUYLY9O52WUxkozHlXFG5EhuT3M30dcHAO22fkMqZ3tE2wccAxjZjPBI6Wig3Hf0oeLKqckNMFq1lOaHGTD1hG1x1N8jSDFGk3PKc0zge9QJMzagVKHEbJ95vMUWPfmij1GanYEewSouX6RbL8cqAjYpz3EAxQ5m7PCdoIZTtMrTLdwtXmwjcj785wuTI23jE");'></div>
+<div class="p-6">
+<h3 class="text-slate-800 text-lg leading-normal">销售业绩分析</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">跟踪销售趋势，识别表现最佳的产品，优化您的销售策略。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBL7wPIo1cSZSsA78tmPK76F4Gtss2H_QVQ7v7NXjHb0KD32s_RJxcd8acJN-2uHhRmj0HNqOj1Oa1UlQJZt93AxvbVs2CXLks5hQY5kKgub2u0LjFxtsqD1c7qFZweumc4bKbPBnpv_tIZVh2TLhO8Cnr713Mhy3uiDTH4gP_4TSseaSzT20y2MqqmJCsgA29MVxcdV2EGSVFkTWpqd9U3E1vKq-I07pV3DUJRODBRIiTvOyFrE69O7yPXHWXuOmMD_26IVgszHtM");'></div>
+<div class="p-6">
+<h3 class="text-slate-800 text-lg leading-normal">客户行为洞察</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">了解客户偏好，细分您的受众，个性化营销活动。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDylGW4BtTL6Lf-APgoMqVcfN4Jt9W8TP4K361JzY3L4kODPQptbWZWqNWOSkKAHah0kRSqzCaN9AtnKvvEEWc6Xf5_2_EriIEE-yXZTfQb8U3krsW8yjyX8b7WkkCe2Z3zS5L-Yf_xKdWP6lTC86dltozqIaHKAA8vOPlRy_ELKjoH7iGidFQFnnbwYW1w-ekyVJ4Ce_gcUHjYrv2wHrD5K2ng1gBQ5HWBTzWvPmhqyFEshIS3ROK7Rb5asGQKGMPADTE0raIIbxo");'></div>
+<div class="p-6">
+<h3 class="text-slate-800 text-lg leading-normal">运营效率优化</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">监控关键运营指标，识别瓶颈，提高流程效率。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-12 bg-slate-800 rounded-3xl p-8 md:p-12">
+<div class="flex flex-col items-center text-center gap-4">
+<h2 class="text-white text-4xl md:text-5xl leading-tight">工作原理</h2>
+<p class="text-slate-300 text-lg font-normal leading-relaxed max-w-3xl">简单直观的流程，将您的数据转化为决策。</p>
+</div>
+<div class="flex flex-col gap-16">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white text-xl">1</div>
+<h3 class="text-white text-2xl">上传您的数据</h3>
+</div>
+<p class="text-slate-300 leading-relaxed">首先安全地上传您的Excel文件。我们的平台支持多种格式，确保以最高机密性处理您的数据。</p>
+</div>
+<img alt="数据上传界面截图" class="rounded-2xl shadow-lg border border-slate-600" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8lJ9_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div class="flex flex-col gap-4 md:order-2">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white text-xl">2</div>
+<h3 class="text-white text-2xl">AI智能分析</h3>
+</div>
+<p class="text-slate-300 leading-relaxed">我们的AI代理开始工作，处理您的数据以识别关键模式、趋势和异常值。通过交互式图表和图形可视化复杂数据。</p>
+</div>
+<img alt="AI分析仪表板截图" class="rounded-2xl shadow-lg border border-slate-600 md:order-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_6_j3b_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary-color)] text-white text-xl">3</div>
+<h3 class="text-white text-2xl">获得可执行洞察</h3>
+</div>
+<p class="text-slate-300 leading-relaxed">接收清晰的、面向决策的建议。我们的智能BI将复杂发现转化为直接的行动，推动您的业务向前发展。</p>
+</div>
+<img alt="可执行洞察和建议截图" class="rounded-2xl shadow-lg border border-slate-600" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8j_2bF0pX5Y_5K4R4Z7Y_1bN4K7j_7W7bZ7nS6aY8"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-12">
+<div class="flex flex-col items-center text-center gap-4">
+<h2 class="text-slate-800 text-4xl md:text-5xl leading-tight">利用先进AI技术</h2>
+<p class="text-slate-600 text-lg font-normal leading-relaxed max-w-3xl">我们的智能BI建立在先进AI系统的基础上，确保深度、可靠和可操作的智能。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 p-6 rounded-2xl glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--accent-color)] text-white">
+<span class="material-symbols-outlined text-2xl">group_work</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">多智能体系统</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">采用专门从事不同分析任务的协作AI代理，提供全面和多方面的洞察。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-6 rounded-2xl glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--accent-color)] text-white">
+<span class="material-symbols-outlined text-2xl">calculate</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">MCP统计算法</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">利用多计算协议(MCP)算法，对分布式数据进行稳健且安全的统计分析。</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-6 rounded-2xl glassmorphism">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--accent-color)] text-white">
+<span class="material-symbols-outlined text-2xl">model_training</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-xl leading-tight">多模型选择</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed">我们的系统智能选择并组合最佳预测模型，确保为您的特定数据提供最高准确性。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<h2 class="text-slate-800 text-4xl md:text-5xl leading-tight text-center">定价方案</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="flex flex-1 flex-col gap-6 rounded-2xl p-8 glassmorphism border border-slate-200">
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-2xl">基础版</h3>
+<p class="flex items-baseline gap-1 text-slate-800">
+<span class="text-5xl tracking-tight">免费</span>
+</p>
+</div>
+<button class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-slate-200 text-slate-800 text-base hover:bg-slate-300 transition-colors">
+<span class="truncate">开始使用</span>
+</button>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 最多5位用户</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 基础仪表板</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 社区支持</div>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-6 rounded-2xl p-8 glassmorphism border-2 border-[var(--primary-color)] shadow-2xl relative">
+<div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+<p class="text-white text-xs font-medium leading-normal tracking-wider rounded-full bg-[var(--primary-color)] px-4 py-1 text-center uppercase">最受欢迎</p>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-2xl">专业版</h3>
+<p class="flex items-baseline gap-1 text-slate-800">
+<span class="text-5xl tracking-tight">¥298</span>
+<span>/ 月</span>
+</p>
+</div>
+<button class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-[var(--primary-color)] text-white text-base shadow-lg hover:shadow-xl transition-shadow">
+<span class="truncate">选择方案</span>
+</button>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 无限用户</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 高级仪表板</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 数据集成</div>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-6 rounded-2xl p-8 glassmorphism border border-slate-200">
+<div class="flex flex-col gap-2">
+<h3 class="text-slate-800 text-2xl">企业版</h3>
+<span class="text-slate-800 text-3xl tracking-tight">联系我们</span>
+</div>
+<button class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-slate-200 text-slate-800 text-base hover:bg-slate-300 transition-colors">
+<span class="truncate">联系销售</span>
+</button>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 定制解决方案</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 专属支持</div>
+<div class="flex items-center gap-3 text-sm font-normal text-slate-600"><span class="material-symbols-outlined text-green-500">check_circle</span> 可扩展基础设施</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center flex flex-col items-center gap-6 py-10">
+<h2 class="text-slate-800 text-4xl md:text-5xl leading-tight max-w-2xl">准备开始了吗？</h2>
+<button class="flex items-center gap-3 min-w-[84px] max-w-[480px] cursor-pointer justify-center overflow-hidden rounded-full h-14 px-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+<span class="truncate">开始免费试用</span>
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+<div class="flex flex-col gap-8 p-10 rounded-3xl glassmorphism border border-slate-200 items-center text-center">
+<h2 class="text-slate-800 text-3xl md:text-4xl leading-tight">定制智能体开发</h2>
+<p class="text-slate-600 text-lg font-normal leading-relaxed max-w-2xl">需要定制解决方案吗？我们的团队可以开发定制AI智能体，满足您独特的数据分析和商业智能需求。联系我们讨论您的项目。</p>
+<button class="flex items-center gap-2 min-w-[84px] max-w-[480px] cursor-pointer justify-center overflow-hidden rounded-full h-12 px-6 bg-[var(--secondary-color)] text-white text-base leading-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+<span class="truncate">联系定制开发</span>
+<span class="material-symbols-outlined">email</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-slate-800 text-white px-4 md:px-10 py-12">
+<div class="max-w-6xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<span class="text-xl font-medium">数据洞察</span>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">AI驱动的智能数据分析平台，助力企业做出更明智的决策。</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-medium">产品</h4>
+<div class="flex flex-col gap-2">
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">AI洞察引擎</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">预测分析</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">数据可视化</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">API接口</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-medium">解决方案</h4>
+<div class="flex flex-col gap-2">
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">销售分析</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">客户洞察</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">运营优化</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">财务分析</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-medium">支持</h4>
+<div class="flex flex-col gap-2">
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">帮助中心</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">开发者文档</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">联系我们</a>
+<a href="#" class="text-slate-400 text-sm hover:text-white transition-colors">隐私政策</a>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-700 mt-8 pt-8 text-center">
+<p class="text-slate-400 text-sm">© 2024 数据洞察. 保留所有权利.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
