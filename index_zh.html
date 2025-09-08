@@ -29,6 +29,28 @@
         border: 1px solid rgba(255, 255, 255, 0.18);
       }
 
+      /* Logo墙样式 - 优化版本 */
+      .logo-item {
+        opacity: 0.7;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 120px;
+        min-height: 60px;
+      }
+
+      .logo-item:hover {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      .logo-item svg {
+        filter: brightness(0.8);
+        transition: filter 0.3s ease;
+      }
+
+      .logo-item:hover svg {
+        filter: brightness(1);
+      }
+
       /* 中文字体优化 */
       h1 {
         font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
@@ -166,28 +188,74 @@
 </div>
 </div>
 </div>
+<!-- 品牌Logo墙 - 100%通栏设计 -->
+<div class="w-full bg-slate-50 py-20 my-20">
+<div class="w-full px-8 md:px-16 lg:px-24">
+<h2 class="text-center text-slate-500 text-xl font-normal mb-16 tracking-wide">Trusted by global data leaders</h2>
+<div class="flex flex-wrap items-center justify-center gap-12 md:gap-16 lg:gap-20">
+<!-- Lululemon -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 160 50" class="h-16 w-auto fill-slate-600">
+<text x="15" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="300" letter-spacing="3px">lululemon</text>
+</svg>
+</div>
+<!-- 蕉内 -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 100 50" class="h-14 w-auto fill-slate-600">
+<text x="8" y="32" font-family="PingFang SC, sans-serif" font-size="24" font-weight="500">蕉内</text>
+</svg>
+</div>
+<!-- 欧舒丹 -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 140 50" class="h-12 w-auto fill-slate-600">
+<text x="5" y="30" font-family="serif" font-size="16" font-weight="400" letter-spacing="2px">L'OCCITANE</text>
+</svg>
+</div>
+<!-- 贝德玛 -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 140 50" class="h-14 w-auto fill-slate-600">
+<text x="15" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2px">BIODERMA</text>
+</svg>
+</div>
+<!-- 怡丽丝尔 -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 100 50" class="h-12 w-auto fill-slate-600">
+<text x="5" y="22" font-family="serif" font-size="14" font-weight="400" letter-spacing="1px">ELIXIR</text>
+<text x="5" y="38" font-family="PingFang SC, sans-serif" font-size="12">怡丽丝尔</text>
+</svg>
+</div>
+<!-- 娇韵诗 -->
+<div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105">
+<svg viewBox="0 0 120 50" class="h-12 w-auto fill-slate-600">
+<text x="8" y="32" font-family="serif" font-size="16" font-weight="400" letter-spacing="2px">CLARINS</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
 <div class="flex flex-col gap-8">
 <h2 class="text-slate-800 text-4xl md:text-5xl leading-tight text-center">应用场景</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8u2stWqsrnsuT2TC43A5pAk_mR-VoAHa9_yn9ycyocKkjuha9_0VmXOlkoTVaNcgX4gYFjXwx2TTUYLY9O52WUxkozHlXFG5EhuT3M30dcHAO22fkMqZ3tE2wccAxjZjPBI6Wig3Hf0oeLKqckNMFq1lOaHGTD1hG1x1N8jSDFGk3PKc0zge9QJMzagVKHEbJ95vMUWPfmij1GanYEewSouX6RbL8cqAjYpz3EAxQ5m7PCdoIZTtMrTLdwtXmwjcj785wuTI23jE");'></div>
 <div class="p-6">
-<h3 class="text-slate-800 text-lg leading-normal">销售业绩分析</h3>
-<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">跟踪销售趋势，识别表现最佳的产品，优化您的销售策略。</p>
+<h3 class="text-slate-800 text-lg leading-normal">媒体投放分析</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">通过智能分析广告投放效果，助力优化媒体策略，实现更高投资回报。</p>
 </div>
 </div>
 <div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBL7wPIo1cSZSsA78tmPK76F4Gtss2H_QVQ7v7NXjHb0KD32s_RJxcd8acJN-2uHhRmj0HNqOj1Oa1UlQJZt93AxvbVs2CXLks5hQY5kKgub2u0LjFxtsqD1c7qFZweumc4bKbPBnpv_tIZVh2TLhO8Cnr713Mhy3uiDTH4gP_4TSseaSzT20y2MqqmJCsgA29MVxcdV2EGSVFkTWpqd9U3E1vKq-I07pV3DUJRODBRIiTvOyFrE69O7yPXHWXuOmMD_26IVgszHtM");'></div>
 <div class="p-6">
-<h3 class="text-slate-800 text-lg leading-normal">客户行为洞察</h3>
-<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">了解客户偏好，细分您的受众，个性化营销活动。</p>
+<h3 class="text-slate-800 text-lg leading-normal">人群效率洞察</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">深入洞察不同人群转化效率，助力优化目标受众策略。</p>
 </div>
 </div>
 <div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDylGW4BtTL6Lf-APgoMqVcfN4Jt9W8TP4K361JzY3L4kODPQptbWZWqNWOSkKAHah0kRSqzCaN9AtnKvvEEWc6Xf5_2_EriIEE-yXZTfQb8U3krsW8yjyX8b7WkkCe2Z3zS5L-Yf_xKdWP6lTC86dltozqIaHKAA8vOPlRy_ELKjoH7iGidFQFnnbwYW1w-ekyVJ4Ce_gcUHjYrv2wHrD5K2ng1gBQ5HWBTzWvPmhqyFEshIS3ROK7Rb5asGQKGMPADTE0raIIbxo");'></div>
 <div class="p-6">
-<h3 class="text-slate-800 text-lg leading-normal">运营效率优化</h3>
-<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">监控关键运营指标，识别瓶颈，提高流程效率。</p>
+<h3 class="text-slate-800 text-lg leading-normal">全域运营报表</h3>
+<p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">全域运营数据可视化展示，助力全面掌控业务全貌。</p>
 </div>
 </div>
 </div>
