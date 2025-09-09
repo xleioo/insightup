@@ -13,17 +13,17 @@
 <link href="favicon.svg" rel="shortcut icon"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style type="text/tailwindcss">
-    :root {
-      --primary-color: #135bec;
-      --secondary-color: #6366f1;
-      --accent-color: #818cf8;
-    }
-    body {
+      :root {
+        --primary-color: #135bec;
+        --secondary-color: #6366f1;
+        --accent-color: #818cf8;
+      }
+      body {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-    .glassmorphism {
+      }
+      .glassmorphism {
       background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -62,34 +62,169 @@
     /* 中文字体优化 */
     h1 {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
-      font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
       letter-spacing: -0.01em;
-      font-weight: 400;
-    }
-    
-    h2, h3 {
+        font-weight: 400;
+      }
+      
+      h2, h3 {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
-      font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
       letter-spacing: -0.005em;
-      font-weight: 400;
-    }
-    
+        font-weight: 400;
+      }
+      
     button {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
-      font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
       letter-spacing: 0.02em;
       font-weight: 400;
-    }
-    
+      }
+      
     p {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
-      font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+        font-feature-settings: 'kern', 'liga', 'clig', 'calt';
       letter-spacing: 0.01em;
       font-weight: 400;
     }
-  </style>
+
+    /* 视差滚动效果 */
+    .parallax-container {
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      perspective: 1px;
+    }
+
+    .parallax-element {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .parallax-back {
+      transform: translateZ(-1px) scale(2);
+    }
+
+    .parallax-base {
+      transform: translateZ(0);
+    }
+
+    /* 视差层级 */
+    .parallax-slow {
+      transform: translateZ(-0.5px) scale(1.5);
+    }
+
+    .parallax-medium {
+      transform: translateZ(-0.3px) scale(1.3);
+    }
+
+    .parallax-fast {
+      transform: translateZ(-0.1px) scale(1.1);
+    }
+
+    /* 渐入动画 */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 浮动动画 */
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* 旋转动画 */
+    .rotate-slow {
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 背景粒子效果 */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(19, 91, 236, 0.3);
+      border-radius: 50%;
+      animation: particleFloat 8s infinite ease-in-out;
+    }
+
+    @keyframes particleFloat {
+      0%, 100% { 
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { 
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    /* 3D 卡片效果 */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(10deg);
+    }
+
+    /* 滚动触发的缩放效果 */
+    .scroll-scale {
+      transition: transform 0.3s ease-out;
+    }
+
+    /* 光标跟随效果 */
+    .cursor-glow {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(19, 91, 236, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: screen;
+      transition: transform 0.1s ease-out;
+      }
+    </style>
 </head>
 <body class="bg-white">
+<!-- 背景粒子效果 -->
+<div class="particles" id="particles"></div>
+<!-- 光标跟随效果 -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
 <div class="layout-container flex h-full grow flex-col">
 <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap px-10 py-4 text-white transition-all duration-300 bg-slate-900/50 backdrop-blur-sm">
@@ -113,13 +248,13 @@
 </div>
 </header>
 <main class="flex flex-1 flex-col">
-<div class="relative w-full">
-<div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkhpBDYrU9dC6qfR_CsG-bNo26epY1OoafqSgtLAtnuRGLTc6o6GnxSKtmFRKcnbgkOG5lHNJmaegY65AsqKZcInYLcXQxtiGMohx9XHoF3VQvJiPnTdPhGnQp-pbDNboeultTDA2MOquivMQr8kYE5UadoLwjdTIMrvCozqTv2qFk8H8mJ9rn6gIm0mgs2Si-HH6Z0bj0FoI5tmVfualTP_MGBPcLmze0vNZSbIoSdkETo4U1DdtOcRV6lCDd1AkFxw5qQc9ugxU");'></div>
-<div class="absolute inset-0 bg-slate-900/60 backdrop-brightness-75"></div>
-<div class="relative min-h-[calc(100vh_-_6rem)] flex flex-col gap-8 items-center justify-center text-center p-8">
-<div class="relative z-10 flex flex-col gap-6 items-center px-4">
-<h1 class="text-5xl md:text-7xl tracking-tighter bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">AI驱动，从电子表格即时获得洞察</h1>
-<p class="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto">通过我们的AI驱动平台，将原始数据转化为可操作的洞察。可视化趋势，发现机会，做出更明智的数据驱动决策。</p>
+<div class="relative w-full parallax-section">
+<div class="absolute inset-0 bg-cover bg-center parallax-slow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkhpBDYrU9dC6qfR_CsG-bNo26epY1OoafqSgtLAtnuRGLTc6o6GnxSKtmFRKcnbgkOG5lHNJmaegY65AsqKZcInYLcXQxtiGMohx9XHoF3VQvJiPnTdPhGnQp-pbDNboeultTDA2MOquivMQr8kYE5UadoLwjdTIMrvCozqTv2qFk8H8mJ9rn6gIm0mgs2Si-HH6Z0bj0FoI5tmVfualTP_MGBPcLmze0vNZSbIoSdkETo4U1DdtOcRV6lCDd1AkFxw5qQc9ugxU");'></div>
+<div class="absolute inset-0 bg-slate-900/60 backdrop-brightness-75 parallax-medium"></div>
+<div class="relative min-h-[calc(100vh_-_6rem)] flex flex-col gap-8 items-center justify-center text-center p-8 parallax-base">
+<div class="relative z-10 flex flex-col gap-6 items-center px-4 fade-in-up">
+<h1 class="text-5xl md:text-7xl tracking-tighter bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent float-animation">AI驱动，从电子表格即时获得洞察</h1>
+<p class="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto fade-in-up">通过我们的AI驱动平台，将原始数据转化为可操作的洞察。可视化趋势，发现机会，做出更明智的数据驱动决策。</p>
 <div class="flex flex-col items-center gap-4 mt-6 p-6 rounded-2xl glassmorphism max-w-lg w-full border border-white/10 shadow-2xl">
 <p class="text-white">上传您的Excel文件进行即时分析</p>
 <div class="flex items-center justify-center w-full">
@@ -140,8 +275,8 @@
 </div>
 </div>
 <!-- 品牌Logo墙 -->
-<div class="w-full py-12 bg-white">
-    <div class="w-full px-8 md:px-16 lg:px-24">
+<div class="w-full py-12 bg-white parallax-section">
+    <div class="w-full px-8 md:px-16 lg:px-24 fade-in-up">
     <h2 class="text-center text-slate-600 text-xl font-normal mb-12 tracking-wide">全球领先品牌的信赖之选</h2>
     <div class="flex items-center justify-center gap-6 md:gap-8 lg:gap-12 overflow-x-auto scrollbar-hide">
     <!-- Lululemon -->
@@ -149,72 +284,75 @@
     <svg viewBox="0 0 160 50" class="h-12 md:h-14 lg:h-16 w-auto fill-slate-600">
     <text x="15" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="300" letter-spacing="3px">lululemon</text>
     </svg>
-    </div>
+</div>
     <!-- 蕉内 -->
     <div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105 flex-shrink-0">
     <svg viewBox="0 0 100 50" class="h-10 md:h-12 lg:h-14 w-auto fill-slate-600">
     <text x="8" y="32" font-family="PingFang SC, sans-serif" font-size="24" font-weight="500">蕉内</text>
     </svg>
-    </div>
+</div>
     <!-- 欧舒丹 -->
     <div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105 flex-shrink-0">
     <svg viewBox="0 0 140 50" class="h-8 md:h-10 lg:h-12 w-auto fill-slate-600">
     <text x="5" y="30" font-family="serif" font-size="16" font-weight="400" letter-spacing="2px">L'OCCITANE</text>
     </svg>
-    </div>
+</div>
     <!-- 贝德玛 -->
     <div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105 flex-shrink-0">
     <svg viewBox="0 0 140 50" class="h-10 md:h-12 lg:h-14 w-auto fill-slate-600">
     <text x="15" y="32" font-family="Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2px">BIODERMA</text>
     </svg>
-    </div>
+</div>
     <!-- 怡丽丝尔 -->
     <div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105 flex-shrink-0">
     <svg viewBox="0 0 100 50" class="h-8 md:h-10 lg:h-12 w-auto fill-slate-600">
     <text x="5" y="22" font-family="serif" font-size="14" font-weight="400" letter-spacing="1px">ELIXIR</text>
     <text x="5" y="38" font-family="PingFang SC, sans-serif" font-size="12">怡丽丝尔</text>
     </svg>
-    </div>
+</div>
     <!-- 娇韵诗 -->
     <div class="logo-item flex items-center justify-center transition-all duration-300 hover:scale-105 flex-shrink-0">
     <svg viewBox="0 0 120 50" class="h-8 md:h-10 lg:h-12 w-auto fill-slate-600">
     <text x="8" y="32" font-family="serif" font-size="16" font-weight="400" letter-spacing="2px">CLARINS</text>
     </svg>
-    </div>
-    </div>
-    </div>
 </div>
-<div class="bg-white py-16 sm:py-24">
+</div>
+</div>
+</div>
+<div class="bg-white py-16 sm:py-24 parallax-section">
 <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center">
 <div class="layout-content-container flex flex-col max-w-7xl flex-1 gap-16">
 <div class="flex flex-col gap-12">
-<div class="flex flex-col items-center text-center gap-4">
+<div class="flex flex-col items-center text-center gap-4 fade-in-up">
 <h2 class="text-slate-800 text-4xl md:text-5xl leading-tight tracking-tighter">观看我们的平台演示</h2>
 <p class="text-slate-600 text-lg leading-relaxed max-w-3xl">了解Insight Up如何将原始数据转化为清晰直观的智能报告，助力品牌获得深度洞察。</p>
 </div>
-<div class="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-200/50">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="产品演示"></iframe>
+<div class="w-full max-w-6xl mx-auto fade-in-up scroll-scale" style="aspect-ratio: 16/9;">
+<video class="w-full h-full object-contain" autoplay loop muted playsinline>
+<source src="live_demo.mp4" type="video/mp4">
+您的浏览器不支持视频播放。
+</video>
 </div>
 </div>
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-8 fade-in-up">
 <h2 class="text-slate-800 text-4xl md:text-5xl leading-tight text-center">应用场景</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300 card-3d fade-in-up">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8u2stWqsrnsuT2TC43A5pAk_mR-VoAHa9_yn9ycyocKkjuha9_0VmXOlkoTVaNcgX4gYFjXwx2TTUYLY9O52WUxkozHlXFG5EhuT3M30dcHAO22fkMqZ3tE2wccAxjZjPBI6Wig3Hf0oeLKqckNMFq1lOaHGTD1hG1x1N8jSDFGk3PKc0zge9QJMzagVKHEbJ95vMUWPfmij1GanYEewSouX6RbL8cqAjYpz3EAxQ5m7PCdoIZTtMrTLdwtXmwjcj785wuTI23jE");'></div>
 <div class="p-6">
 <h3 class="text-slate-800 text-lg leading-normal">媒体投放分析</h3>
 <p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">通过智能分析广告投放效果，助力优化媒体策略，实现更高投资回报。</p>
 </div>
 </div>
-<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300 card-3d fade-in-up">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBL7wPIo1cSZSsA78tmPK76F4Gtss2H_QVQ7v7NXjHb0KD32s_RJxcd8acJN-2uHhRmj0HNqOj1Oa1UlQJZt93AxvbVs2CXLks5hQY5kKgub2u0LjFxtsqD1c7qFZweumc4bKbPBnpv_tIZVh2TLhO8Cnr713Mhy3uiDTH4gP_4TSseaSzT20y2MqqmJCsgA29MVxcdV2EGSVFkTWpqd9U3E1vKq-I07pV3DUJRODBRIiTvOyFrE69O7yPXHWXuOmMD_26IVgszHtM");'></div>
 <div class="p-6">
 <h3 class="text-slate-800 text-lg leading-normal">人群效率洞察</h3>
 <p class="text-slate-600 text-sm font-normal leading-relaxed mt-2">深入洞察不同人群转化效率，助力优化目标受众策略。</p>
 </div>
 </div>
-<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300">
+<div class="flex flex-col gap-4 rounded-2xl overflow-hidden glassmorphism shadow-md hover:shadow-xl transition-shadow duration-300 card-3d fade-in-up">
 <div class="w-full h-48 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDylGW4BtTL6Lf-APgoMqVcfN4Jt9W8TP4K361JzY3L4kODPQptbWZWqNWOSkKAHah0kRSqzCaN9AtnKvvEEWc6Xf5_2_EriIEE-yXZTfQb8U3krsW8yjyX8b7WkkCe2Z3zS5L-Yf_xKdWP6lTC86dltozqIaHKAA8vOPlRy_ELKjoH7iGidFQFnnbwYW1w-ekyVJ4Ce_gcUHjYrv2wHrD5K2ng1gBQ5HWBTzWvPmhqyFEshIS3ROK7Rb5asGQKGMPADTE0raIIbxo");'></div>
 <div class="p-6">
 <h3 class="text-slate-800 text-lg leading-normal">全域运营报表</h3>
@@ -223,9 +361,9 @@
 </div>
 </div>
 </div>
-<div class="text-center flex flex-col items-center gap-6 pt-10">
+<div class="text-center flex flex-col items-center gap-6 pt-10 fade-in-up">
 <h2 class="text-slate-800 text-4xl md:text-5xl leading-tight tracking-tighter max-w-2xl">准备开始了吗？</h2>
-<button class="flex items-center gap-3 min-w-[84px] max-w-[480px] cursor-pointer justify-center overflow-hidden rounded-full h-14 px-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+<button class="flex items-center gap-3 min-w-[84px] max-w-[480px] cursor-pointer justify-center overflow-hidden rounded-full h-14 px-8 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 float-animation">
 <span class="truncate">开始免费试用</span>
 <span class="material-symbols-outlined">rocket_launch</span>
 </button>
@@ -233,11 +371,11 @@
 </div>
 </div>
 </div>
-<div class="bg-slate-100 py-16 sm:py-24 relative overflow-hidden">
-<div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-200/50 to-transparent rounded-full blur-3xl"></div>
-<div class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-blue-200/50 to-transparent rounded-full blur-3xl"></div>
+<div class="bg-slate-100 py-16 sm:py-24 relative overflow-hidden parallax-section">
+<div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-200/50 to-transparent rounded-full blur-3xl rotate-slow"></div>
+<div class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-blue-200/50 to-transparent rounded-full blur-3xl rotate-slow"></div>
 <div class="relative z-10 container mx-auto px-4 flex flex-col gap-12">
-<div class="flex flex-col items-center text-center gap-4">
+<div class="flex flex-col items-center text-center gap-4 fade-in-up">
 <h2 class="text-slate-800 text-4xl md:text-5xl leading-tight tracking-tighter">有问题？询问我们的AI助手</h2>
 <p class="text-slate-600 text-lg leading-relaxed max-w-2xl">从我们的智能助手那里获得关于产品、功能和能力的即时答案。</p>
 </div>
@@ -279,5 +417,194 @@
 </footer>
 </div>
 </div>
+
+<script>
+// 视差滚动和动画效果 JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // 创建背景粒子
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+    
+    // 光标跟随效果
+    function initCursorGlow() {
+        const cursorGlow = document.getElementById('cursorGlow');
+        
+        document.addEventListener('mousemove', function(e) {
+            cursorGlow.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        });
+    }
+    
+    // 滚动触发动画
+    function initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // 观察所有需要动画的元素
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    // 视差滚动效果
+    function initParallaxEffect() {
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrollTop = window.pageYOffset;
+            
+            // 处理视差元素
+            document.querySelectorAll('.parallax-slow').forEach(element => {
+                const speed = 0.5;
+                const yPos = -(scrollTop * speed);
+                element.style.transform = `translateZ(-0.5px) scale(1.5) translateY(${yPos}px)`;
+            });
+            
+            document.querySelectorAll('.parallax-medium').forEach(element => {
+                const speed = 0.3;
+                const yPos = -(scrollTop * speed);
+                element.style.transform = `translateZ(-0.3px) scale(1.3) translateY(${yPos}px)`;
+            });
+            
+            document.querySelectorAll('.parallax-fast').forEach(element => {
+                const speed = 0.1;
+                const yPos = -(scrollTop * speed);
+                element.style.transform = `translateZ(-0.1px) scale(1.1) translateY(${yPos}px)`;
+            });
+            
+            // 处理滚动缩放效果
+            document.querySelectorAll('.scroll-scale').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const scrollProgress = 1 - (rect.top / window.innerHeight);
+                    const scale = 0.8 + (scrollProgress * 0.2);
+                    element.style.transform = `scale(${Math.min(scale, 1)})`;
+                }
+            });
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+    }
+    
+    // 鼠标移动视差效果
+    function initMouseParallax() {
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.card-3d').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const deltaX = (e.clientX - centerX) / (rect.width / 2);
+                const deltaY = (e.clientY - centerY) / (rect.height / 2);
+                
+                if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) {
+                    const rotateX = deltaY * 5;
+                    const rotateY = deltaX * 5;
+                    element.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                }
+            });
+        });
+        
+        // 重置卡片状态
+        document.querySelectorAll('.card-3d').forEach(element => {
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+    }
+    
+    // 平滑滚动
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+    
+    // 性能优化：防抖函数
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    // 响应式处理
+    function handleResize() {
+        // 重新计算视差效果
+        initParallaxEffect();
+    }
+    
+    // 初始化所有效果
+    createParticles();
+    initCursorGlow();
+    initScrollAnimations();
+    initParallaxEffect();
+    initMouseParallax();
+    initSmoothScroll();
+    
+    // 添加事件监听器
+    window.addEventListener('resize', debounce(handleResize, 250));
+    
+    // 页面加载完成后的额外优化
+    window.addEventListener('load', function() {
+        // 所有资源加载完成后触发动画
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 300);
+    });
+});
+</script>
 
 </body></html>
