@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head>
 <meta charset="utf-8"/>
-<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
 <!-- 引入现代中文字体：思源黑体和苹方 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -17,6 +17,21 @@
         --primary-color: #135bec;
         --secondary-color: #6366f1;
         --accent-color: #818cf8;
+      }
+      
+      /* 移动端优化 */
+      @media (max-width: 640px) {
+        html {
+          font-size: 14px;
+        }
+        .text-3xl {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+        .text-2xl {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
       }
       body {
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
